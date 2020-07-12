@@ -1,0 +1,160 @@
+body {
+	color: #000;
+	overflow-x: hidden;
+	height: 100%;
+	background-image: linear-gradient(180deg, green, #fff);
+	background-repeat: no-repeat
+}
+
+#about {
+	background-image: linear-gradient(180deg, green, #fff);
+}
+
+#logo {
+	width: 150px
+}
+
+p {
+	font-size: 16px;
+}
+
+.margin {
+	margin-bottom: 45px;
+}
+
+#team {
+	background-image: linear-gradient(180deg, green, #fff);
+}
+
+#colorbtn {
+	background-image: linear-gradient(180deg, green, #fff);
+	color: #000;
+}
+
+#height {
+	background-color: green;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border: 0;
+	border-radius: 0;
+	margin-bottom: 0;
+	font-size: medium;
+	color: black;
+	letter-spacing: 5px;
+	height: 10%;
+}
+
+a:hover {
+	color: whitesmoke;
+}
+
+li a {
+	color: black;
+}
+
+#contact {
+	background-color: white;
+	/* Black Gray */
+	color: black;
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+#testimonial {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	font-family: 'Open Sans'
+}
+
+#carouselExampleTestimonials {
+	color: linear-gradient(180deg, green, #fff);
+	max-width: 900px;
+	margin: auto
+}
+
+.carousel-caption {
+	position: initial;
+	z-index: 10;
+	padding: 5rem 8rem;
+	color: black;
+	text-align: center;
+	font-size: 1.2rem;
+	font-style: italic;
+	font-weight: bold;
+	line-height: 2rem;
+	bottom: 50%;
+}
+
+@media(max-width:767px) {
+	.carousel-caption {
+		position: initial;
+		z-index: 10;
+		padding: 3rem 2rem;
+		background-image: linear-gradient(180deg, green, #fff);
+		text-align: center;
+		font-size: 0.7rem;
+		font-style: italic;
+		font-weight: bold;
+		line-height: 1.5rem
+	}
+}
+
+.carousel-caption img {
+	width: 6rem;
+	border-radius: 5rem;
+	margin-top: 2rem
+}
+
+.carousel-control-prev {
+	justify-content: flex-start
+}
+
+.carousel-control-next {
+	justify-content: flex-end
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	transition: none;
+	opacity: unset
+}
+
+.modal-dialog {
+	max-width: 750px !important;
+}
+
+@media (min-width: 750px) {
+	#contact-form {
+		margin: 0 45%;
+	}
+}
+
+@media (max-width: 749px) {
+	#contact-form {
+		margin: 0 30%;
+	}
+}
+
+.carousel-caption {
+	background-image: linear-gradient(200deg, #fff, green);
+	bottom: 50%;
+}
+
+.modal-title,
+.modal-body {
+	color: #242424;
+}
+
+.modal-body {
+	background-image: linear-gradient(180deg, #fff, green);
+}
+
+#btnMessage {
+	background-color: #4CAF50;
+}
+
+footer {
+	background-image: linear-gradient(180deg, green, #fff);
+}

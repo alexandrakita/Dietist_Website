@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <link  rel="stylesheet" type="text/css" href="css1.css">
+      <script>
+         //gia na travhksoume ta 4 antikeimena pou uparxoun(stoixeia xrhstwn) se mia vash ston server
+              $(document).ready(function(){ //ό,τι περικλύεται εδω ,θα εκτελεστεί όταν ολόκληρη η σελίδα , είναι έτοιμη
+            		$(".btnUsers").click(function(e) { //όταν το button με class btnUser πατηθεί γίνεται trigger μια ajax call προς τον server
+         console.log('Lets fetch user infos');
+         $.ajax({  //jQuery AJAX συνάρτηση
+         	url: "output.php", // με ποιο αρχειο θα επικοινωνησει η ajax call,που θα στειλει την κληση 
+         	type: "GET",  //η μέθοδος με την οποια στέλνουμε τα δεδομένα
+         	dataType: "html",   //expect html to be returned                
+         	success:function(data){//αν είναι επιτυχημενη η ajax κληση θα μας επιστρεψει τα στοιχεια σε μορφη πίνακα
+         		$("#user-infos").html(data);//ta data 8a pas kai 8a ta grapseis sto element me id user-info
+         		console.log(data);//gia na ta emfanisei kai sthn consola
+         		data = $.parseJSON(data);
+         		var html_to_append = '';
+         		//8a ta emfanisei se morfh pinaka
+         		$.each(data, function(i, item) {
+         			
+         			html_to_append +=
+         
+         				'<tr class="mt-3 text-uppercase"><td class="p-2">' +
+         				item.username + 
+         				'</td><td class="p-2">' +
+         				item.password +
+         				'</td><td class="p-2">' +
+         				item.name +
+         				'</td><td class="p-2">' +
+         				item.email +
+         				'</td></tr>';
+         				
+         		});
+         		$("#user-infos-json").html(html_to_append);
+         	},
+         	failure:function (){  //αν το response απο το ajax call περιλαμβάνει κάποιο error ή υπαρχει αδυναμία στην διασύνδεση front-end & back-end
+         		alert("Something went wrong");
+         	}
+         });
+         });
+          });
+      </script>
+   </head>
+   <body>
+      <label class="container font-weight-bold mt-5 pb-5 d-flex justify-content-center">Δες τα στοιχεία όλων των εγγεγραμμένων χρηστών</label>
+      <!--το κουμπί Fetch Database Users στο κέντρο -->
+      <div class="d-flex justify-content-center">
+         <!--otan to kanw klik na efarmostei mia ajax call pros th vash h opoia 8a m ferei ola ta antikeimena-->
+         <button class="btn btn-success btnUsers">Fetch Database Users</button>
+      </div>
+      <br>
+      <!--ο πίνακας στον οποιο θα εμφανιστούν τα στοιχεία των users που κάνουμε fetch από την database-->
+      <div class="table-responsive-sm">
+         <table class="table">
+            <thead class="thead-dark">
+               <tr>
+                  <th scope="col">Username</th>
+                  <!--επικεφαλίδες του πίνακα-->
+                  <th scope="col">Password</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+               </tr>
+            </thead>
+            <tbody class="m-5 pb-5 col-sm "  id="user-infos-json"></tbody>
+         </table>
+      </div>
+   </body>
+</html>

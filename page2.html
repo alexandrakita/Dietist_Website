@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--Αυτό δίνει οδηγίες στο πρόγραμμα περιήγησης σχετικά με τον τρόπο ελέγχου των διαστάσεων και της κλιμάκωσης της σελίδας,
+         tο width=device-widthμέρος ορίζει το πλάτος της σελίδας για να ακολουθεί το πλάτος της οθόνης της συσκευής (το οποίο θα διαφέρει ανάλογα με τη συσκευή),
+         tο initial-scale=1.0μέρος ορίζει το αρχικό επίπεδο ζουμ όταν η σελίδα φορτώνεται για πρώτη φορά από το πρόγραμμα περιήγησης.-->
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-
+         Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-
+         J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-
+         Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-
+         wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <!--για να φιλοξενησω το jQuery, το συμπεριelaba από ένα CDN (Content Delivery Network).-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!--to arxeio css-->
+      <link rel="stylesheet" type="text/css" href="css2.css">
+      <script>
+         $(document).ready(function(){ //ό,τι περικλύεται εδω ,θα εκτελεστεί όταν ολόκληρη η σελίδα , είναι έτοιμη
+         
+         $(".btnAction").click(function(e) {   //όταν το button με id btnAction πατηθεί γίνεται trigger μια ajax call προς τον server
+         console.log('Lets save the user');
+         console.log($("#username").val());
+         console.log($("#password").val());
+         console.log($("#name").val());
+         console.log($("#email").val());
+         $.ajax({                         //jQuery AJAX συνάρτηση
+             url: "register.php",         // με ποιο αρχειο θα επικοινωνησει η ajax call,που θα στειλει την κληση 
+                  //τα δεδομενα που στελνω στο Url που επιθυμω
+             data:'username='+$("#username").val()+'&password='+$("#password").val()+'&name='+$("#name").val()+'&email='+$("#email").val(),
+             type: "POST", //η μέθοδος με την οποια στέλνουμε τα δεδομένα
+             dataType: "html",   //expect html to be returned                
+             success:function(data){ ////αν είναι επιτυχημενη η ajax κληση
+                 alert("User with name "+ $("#username").val() + " successfully register ");
+         // gia na midenizei ta inputs
+           $('#username').val('');
+           $('#password').val('');
+           $('#email').val('');
+           $('#name').val('');
+             },
+             failure:function (){   //αν το response απο το ajax call περιλαμβάνει κάποιο error ή υπαρχει αδυναμία στην διασύνδεση front-end & back-end
+                 alert("Something went wrong");
+             }
+         });
+         
+         
+         });
+         
+         
+         
+         });
+      </script>
+   </head>
+   <body>
+      <!--Navbar menu-->
+      <div id="height">
+         <div nav class=" nav-tabs navbar navbar-expand-md  navbar-dark">
+            <!--δημιουργια navigation tabs,for responsive collapsing,This class is used to set the color of the navigation bar content to light. It will change the toggler icon to have white lines. -->
+            <div class="col-sm-2">
+               <!--Grid System (sm (>=576px))-->
+               <a class="navbar-brand" href="#">
+                  <!-- gia to logo-->
+                  <img id="logo" src="ergasia.png" alt="logo">
+               </a>
+            </div>
+            <a class="navbar-brand" href="page1.html">Αρχική Σελίδα</a> 
+            <!--with data-toggle="collapse" ,will be shown or hidden with a click of a button,data-target="#collapsibleNavbar" to create a collapsible navigation bar,-->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+               <span class="navbar-toggler-icon"></span><!--hamburger menu icons  -->
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+               <!--for grouping and hiding navbar contents by a parent breakpoint-->
+               <ul class="navbar-nav">
+                  <!--To add links inside the navbar-->
+                  <!--Using the nav-item class allows developers to quickly change between different types of navigation in the bootstrap system while only changing the wrapping class on the <ul>-->
+                  <li class="nav-item">
+                     <a class="nav-link" href="page2.html">Η Ομάδα μας</a> <!--class to their links-->
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="page3.html">Συχνές ερωτήσεις</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="page4.html">Υπολογισμός ΒΜΙ</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="page5.html">Blog</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="page6.html">Eπικοινωνήστε</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenterA">Εγγραφή</a> <!--when the user click ths show the below modal-->
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <!-- Modal for register-->
+      <!--The aria-labelledby attribute establishes relationships between objects and their label(s), and its value should be one or more element IDs, which refer to elements that have the text needed for labeling-->
+      <!-- aria-hidden="true",removes that element and all of its children from the accessibility tree.-->
+      <!--.was-validated για σχόλια επικύρωσης πριν ή μετά την υποβολή της φόρμας-->
+      <div class="modal fade was-validated" id="exampleModalCenterA" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <!--The modal-dialog class sets the proper width and margin of the modal-->
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <!--Center the modal vertically and horizontally within the page, with the .modal-dialog-centered class-->
+            <div class="modal-content">
+               <!--The <div class="modal-content" styles the modal-->
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Εγγραφή</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="modal-body ">
+                  <!--The modal-body class is used to define the style for the body of the modal-->
+                  <div>
+                     <!--gia tin eisagogh username-->
+                     <div>
+                        <label style="padding-top:20px;">Όνομα χρήστη</label>  <!--etiketa username-->
+                        <span id="username-info" class="info"></span>
+                        <br>
+                        <input type="text" name="username" id="username" class="demoInputBox col-sm-5 control" required>
+                        <!--Τα πεδία εισαγωγής θα έχουν ένα πράσινο (έγκυρο) ή κόκκινο (μη έγκυρο) περίγραμμα για να υποδείξουμε τι λείπει στη φόρμα, .valid-feedbackή ένα .invalid-feedbackμήνυμα για να πουμε στον χρήστη τι ακριβώς λείπει ή πρέπει να γίνει πριν από την υποβολή της φόρμας-->
+                        <div class="valid-feedback">Έγκυρο.</div>
+                        <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο.</div>
+                     </div>
+                     <!--gia tin eisagogh κωδικού-->
+                     <div>
+                        <label>Κωδικός</label>
+                        <span id="password-info" class="info"></span>
+                        <br>
+                        <input type="password" name="password" id="password" class="demoInputBox col-sm-5 control" required>
+                        <div class="valid-feedback">Έγκυρο.</div>
+                        <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο.</div>
+                     </div>
+                     <!--gia tin eisagogh name-->
+                     <div>
+                        <label>Όνομα</label>
+                        <span id="name-info" class="info"></span>
+                        <br>
+                        <input type="text" name="name" id="name" class="demoInputBox col-sm-5 control" required>
+                        <div class="valid-feedback">Έγκυρο.</div>
+                        <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο.</div>
+                     </div>
+                     <!--gia tin eisagogh email-->
+                     <div>
+                        <label>email</label>
+                        <span id="email-info" class="info"></span>
+                        <br>
+                        <input type="email" name="email" id="email" class="demoInputBox col-sm-5 control" placeholder="name@example.com" required></input>
+                        <div class="valid-feedback">Έγκυρο</div>
+                        <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο(name@example.com).</div>
+                     </div>
+                     <br>
+                     <!--button send,οταν πατηθεί γίνεται trigger μια ajax call προς τον server-->
+                     <div>
+                        <button name="submit" class="btnAction btn-success btn-lg">Αποστολή</button>
+                     </div>
+                  </div>
+               </div>
+               <!--κουμπι για να κλεισει το modal-->
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--Our Team-->
+      <div class="container">
+         <!--den a ektinetai apo akrh se akrh ths o8onhs-->
+         <div class="bg-6">
+            <div id="team" class="container text-center">
+               <h3 class="bg-success text-white">Η Ομάδα μας</h3>
+               <!--emfanizei to Our Team se ena prasino plaisio me leuka grammata kentrarismeno-->
+               <p> 
+               <h6> Με την πεποίθηση, ότι η αντιμετώπιση της παχυσαρκίας είναι εφικτή σε κάθε περίπτωση αρκεί να υιοθετηθεί το κατάλληλο  διατροφικό πρόγραμμα η ομάδα της Μαρίας Ριμική προσεγγίζει κάθε άνθρωπο χωριστά με σεβασμό στις ανάγκες του και τις ιδιαιτερότητές του. Η ΄Αννα Χάλαρη και η Ζωή Αγρανιώτου είναι οι διατροφολόγοι, που θα σας μάθουν να τρέφεστε σωστά. Γιατί στόχος είναι όχι απλώς η απώλεια βάρους αλλά οι νέες διατροφικές συνήθειες, που θα σας βοηθήσουν να ξεπεράσετε το πρόβλημα της παχυσαρκίας και να μην το αντιμετωπίσετε εκ νέου στο μέλλον.</h6>
+               </p>
+               <br> 
+               <!--to periexomeno me se card exeo .card-body class-->
+               <div class="card-group">
+                  <div class="card">
+                     <!--Δημιουργείται μια βασική κάρτα με την . card-->
+                     <!--class="card-img-top"
+                        για να τοποθετήσετε την εικόνα στο πάνω μέρος ή στο κάτω μέρος της κάρτας -->
+                     <img class="p-2 card-img-top" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" width="250" alt="Card image cap">
+                     <div class="card-body">
+                        <h5 class="card-title">Αλεξάνδρα Ρανά</h5>
+                        <!--card-title gia na pr8aisw card titlo se ka8e heading element-->
+                        <!--Η .card-textτάξη χρησιμοποιείται για την αφαίρεση των κάτω περιθωρίων για ένα στοιχείο <p> εάν είναι το τελευταίο παιδί (ή το μόνο) μέσα -->
+                        <p class="card-text">Με σπουδές στην εφαρμοσμένη πληροφορική και πάνω από 22 χρόνια εμπειρία σε διοικητική οργάνωση, θα σας υποδεχτεί στο Διαιτολογικό & Διατροφολογικό Κέντρο με θετική διάθεση, χαμόγελο και θα φροντίσει να είναι όλες οι επισκέψεις  σας ευχάριστες.</p>
+                     </div>
+                     <div class="card-footer">
+                        <!--class="card-footer" προσθετει footer σε μια καρτα-->
+                        <p class="bg-success text-white"> Γραμματειακή Υποστήριξη</p>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <img class="p-2 card-img-top" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" width="250" alt="Card image cap">
+                     <div class="card-body">
+                        <h5 class="card-title">Νασια Καραγιανοπούλου</h5>
+                        <p class="card-text" >   Ειδικός Εφαρμογών Διαιτητικής με 15ετή παρουσία  στο χώρο της διατροφής. Η παλαιότερη συνεργάτης του Διαιτολογικού & Διατροφολογικού Κέντρου.</p>
+                     </div>
+                     <div class="card-footer">
+                        <p class="bg-success text-white"> Ειδικός Εφαρμογών Διαιτητικής</p>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <img class="p-2 card-img-top" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" width="250" alt="Card image cap">
+                     <div class="card-body">
+                        <h5 class="card-title">Αναστασία Παπαδήμα</h5>
+                        <p class="card-text" >Πτυχιούχος διαιτολόγος διατροφολόγος του ΑΤΕΙ  Σητείας με εξειδίκευση στις διατροφικές διαταραχές και στις ψυχολογικές παρεμβάσεις της παχυσαρκίας (Master practitioner on eating disorders and obesity από το National Center of Eating Disorders της Μεγάλης Βρετανίας), μέλος του Πανελλήνιου Συλλόγου Διαιτολόγων Διατροφολόγων, εξωτερικός επιστημονικός συνεργάτης του Πανεπιστημιακού νοσοκομείου  Αττικόν. Συνεργάζεται με το Διαιτολογικό & Διατροφολογικό Κέντρο τα τελευταία τρία χρόνια</p>
+                     </div>
+                     <div class="card-footer">
+                        <p class="bg-success text-white">Διαιτολόγος Διατροφολόγος</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Footer -->
+      <footer class="container-fluid bg-4 text-center">
+         <!--container-fluid for a full width container, spanning the entire width of the viewport-->
+         <br>
+         <h7 class="mt-5">Copyright 2020 Διατροφολογικό & Διαιτολογικό Κέντρo | All Rights Reserved | </h7>
+         <!--mt= margin top-->
+         <div>
+            <a type="button" class="btn btn-success mb-3" href="σελδιαχειρισης.html">Σελίδα διαχείρισης</a><!--mb= margin bottom-->
+            <!--go to the page σελδιαχειρισης.html -->
+         </div>
+         <br>
+      </footer>
+   </body>
+</html>

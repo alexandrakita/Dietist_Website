@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--Αυτό δίνει οδηγίες στο πρόγραμμα περιήγησης σχετικά με τον τρόπο ελέγχου των διαστάσεων και της κλιμάκωσης της σελίδας,
+         tο width=device-widthμέρος ορίζει το πλάτος της σελίδας για να ακολουθεί το πλάτος της οθόνης της συσκευής (το οποίο θα διαφέρει ανάλογα με τη συσκευή),
+         tο initial-scale=1.0μέρος ορίζει το αρχικό επίπεδο ζουμ όταν η σελίδα φορτώνεται για πρώτη φορά από το πρόγραμμα περιήγησης.-->
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-
+         Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-
+         J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-
+         Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-
+         wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+      <!--για να φιλοξενησω το jQuery, το συμπεριelaba από ένα CDN (Content Delivery Network).-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <!-- Popper JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      <!--το αρχειο css-->
+      <link rel="stylesheet" type="text/css" href="css3.css">
+   </head>
+   <body>
+      <script>
+         $(document).ready(function(){ //ό,τι περικλύεται εδω ,θα εκτελεστεί όταν ολόκληρη η σελίδα , είναι έτοιμη
+         
+         $(".btnAction").click(function(e) {   //όταν το button με id btnAction πατηθεί γίνεται trigger μια ajax call προς τον server
+         console.log('Lets save the user');
+         console.log($("#username").val());
+         console.log($("#password").val());
+         console.log($("#name").val());
+         console.log($("#email").val());
+         $.ajax({                         //jQuery AJAX συνάρτηση
+             url: "register.php",         // με ποιο αρχειο θα επικοινωνησει η ajax call,που θα στειλει την κληση 
+                  //τα δεδομενα που στελνω στο Url που επιθυμω
+             data:'username='+$("#username").val()+'&password='+$("#password").val()+'&name='+$("#name").val()+'&email='+$("#email").val(),
+             type: "POST", //η μέθοδος με την οποια στέλνουμε τα δεδομένα
+             dataType: "html",   //expect html to be returned                
+             success:function(data){ ////αν είναι επιτυχημενη η ajax κληση
+                 alert("User with name "+ $("#username").val() + " successfully register ");
+         // gia na midenizei ta inputs
+         $('#username').val('');
+           $('#password').val('');
+           $('#email').val('');
+           $('#name').val('');
+         
+             },
+             failure:function (){   //αν το response απο το ajax call περιλαμβάνει κάποιο error ή υπαρχει αδυναμία στην διασύνδεση front-end & back-end
+                 alert("Something went wrong");
+             }
+         });
+         
+         });
+         
+         
+         
+         });
+      </script>
+      </head>
+      <body>
+         <!-- Navbar -->
+         <!--menu-->
+         <div id="height">
+            <div nav class=" nav-tabs navbar navbar-expand-md  navbar-dark">
+               <!--δημιουργια navigation tabs,for responsive collapsing,This class is used to set the color of the navigation bar content to light. It will change the toggler icon to have white lines. -->
+               <div class="col-sm-2">
+                  <!--Grid System (sm (>=576px))-->
+                  <a class="navbar-brand" href="#">
+                     <!-- gia to logo-->
+                     <img id="logo" src="ergasia.png" alt="logo img">
+                  </a>
+               </div>
+               <a class="navbar-brand" href="page1.html">Αρχική Σελίδα</a> 
+               <!--with data-toggle="collapse" ,will be shown or hidden with a click of a button,data-target="#collapsibleNavbar" to create a collapsible navigation bar,-->
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon"></span><!--hamburger menu icons  -->
+               </button>
+               <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  <!--for grouping and hiding navbar contents by a parent breakpoint-->
+                  <ul class="navbar-nav">
+                     <!--To add links inside the navbar-->
+                     <!--Using the nav-item class allows developers to quickly change between different types of navigation in the bootstrap system while only changing the wrapping class on the <ul>-->
+                     <li class="nav-item">
+                        <a class="nav-link" href="page2.html">Η Ομάδα μας</a> <!--class to their links-->
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="page3.html">Συχνές ερωτήσεις</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="page4.html">Υπολογισμός ΒΜΙ</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="page5.html">Blog</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="page6.html">Eπικοινωνήστε</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="#"  data-toggle="modal" data-target="#exampleModalCenterA">Εγγραφή</a> <!--when the user click ths show the below modal-->
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+         <!-- Modal for register-->
+         <!--The aria-labelledby attribute establishes relationships between objects and their label(s), and its value should be one or more element IDs, which refer to elements that have the text needed for labeling-->
+         <!-- aria-hidden="true",removes that element and all of its children from the accessibility tree.-->
+         <!--.was-validated για σχόλια επικύρωσης πριν ή μετά την υποβολή της φόρμας-->
+         <div class="modal fade was-validated" id="exampleModalCenterA" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <!--The modal-dialog class sets the proper width and margin of the modal-->
+            <div class="modal-dialog modal-dialog-centered" role="document">
+               <!--Center the modal vertically and horizontally within the page, with the .modal-dialog-centered class-->
+               <div class="modal-content">
+                  <!--The <div class="modal-content" styles the modal-->
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLongTitle">Εγγραφή</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body ">
+                     <!--The modal-body class is used to define the style for the body of the modal-->
+                     <div>
+                        <!--gia tin eisagogh username-->
+                        <div>
+                           <label style="padding-top:20px;">Όνομα Χρήστη</label>  <!--etiketa username-->
+                           <span id="username-info" class="info"></span>
+                           <br>
+                           <!--Τα πεδία εισαγωγής θα έχουν ένα πράσινο (έγκυρο) ή κόκκινο (μη έγκυρο) περίγραμμα για να υποδείξουμε τι λείπει στη φόρμα, .valid-feedbackή ένα .invalid-feedbackμήνυμα για να πουμε στον χρήστη τι ακριβώς λείπει ή πρέπει να γίνει πριν από την υποβολή της φόρμας-->
+                           <input type="text" name="username" id="username" class="demoInputBox col-sm-5 control" required>
+                           <div class="valid-feedback">Έγκυρο.</div>
+                           <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο.</div>
+                        </div>
+                        <!--gia tin eisagogh κωδικου-->
+                        <div>
+                           <label>Κωδικός</label>
+                           <span id="password-info" class="info"></span>
+                           <br>
+                           <input type="password" name="password" id="password" class="demoInputBox col-sm-5 control" required>
+                           <div class="valid-feedback">Έγκυρο.</div>
+                           <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο.</div>
+                        </div>
+                        <!--gia tin eisagogh name-->
+                        <div>
+                           <label>Όνομα</label>
+                           <span id="name-info" class="info"></span>
+                           <br>
+                           <input type="text" name="name" id="name" class="demoInputBox col-sm-5 control" required>
+                           <div class="valid-feedback">Έγκυρο.</div>
+                           <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο.</div>
+                        </div>
+                        <!--gia tin eisagogh email-->
+                        <div>
+                           <label>Εmail</label>
+                           <span id="email-info" class="info"></span>
+                           <br>
+                           <input type="email" name="email" id="email" class="demoInputBox col-sm-5 control" placeholder="name@example.com" required></input>
+                           <div class="valid-feedback">Έγκυρο.</div>
+                           <div class="invalid-feedback">Παρακαλώ συμπληρώστε αυτό το πεδίο(name@example.com).</div>
+                        </div>
+                        <br>
+                        <!--button send,οταν πατηθεί γίνεται trigger μια ajax call προς τον server-->
+                        <div>
+                           <button name="submit" class="btnAction btn-success btn-lg">Αποστολή</button>
+                        </div>
+                     </div>
+                  </div>
+                  <!--κουμπι για να κλεισει το modal-->
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <div id="team" class="container text-center">
+            <!--oxi apo akrh se akrh , kai stoixish sth mesh-->
+            <h3 class="bg-success text-white">ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ ΔΙΑΤΡΟΦΗΣ</h3>
+            <!--το emfanizei se prasino plaisio kai me leuka grammata-->
+            </br> 
+            <img  src="questions.png" width="250" alt="questions">
+         </div>
+         <!-- Grid row -->
+         <div class="row accordion-gradient-bcg d-flex justify-content-center">
+            <!-- Grid column -->
+            <div class="col-md-10 col-xl-6 py-5">
+               <div id="accordion">
+                  <!-- Accordion card -->
+                  <div class="card">
+                     <!-- Card header -->
+                     <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           Πότε χρειάζεται να απευθυνθώ σε ενα διατροφολόγο?
+                           </button>
+                        </h5>
+                     </div>
+                     <!-- Card body -->
+                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                           Τις περισσότερες φορές είναι δύσκολο να πάρουμε την απόφαση, γιατί πιστεύουμε ότι γνωρίζουμε τα λάθη της διατροφής μας και άρα τον τρόπο να τα αντιμετωπίσουμε. Στην προσπάθεια τους μάλιστα να χάσουν κιλά, οι περισσότεροι ακολουθούν ακραίες δίαιτες, τρώγοντας πολύ λιγότερο από το επιτρεπτό. Έτσι επέρχεται σωματική και ψυχολογική κόπωση ενώ τα αποτελέσματα δεν είναι τα αναμενόμενα. Εδώ θα επέμβει ο διατροφολόγος, που θα σας βοηθήσει να αποκτήσετε τις σωστές διατροφικές συνήθειες, οι οποίες θα οδηγήσουν στο επιθυμητό αποτέλεσμα χωρίς κόπο και χωρίς για να διαταραχθεί η ισορροπία του οργανισμού σας.
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Accordion card -->
+                  <div class="card">
+                     <!-- Card header -->
+                     <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                           Πώς μπορώ να αδυνατίσω χωρίς να πεινάω?
+                           </button>
+                        </h5>
+                     </div>
+                     <!-- Card body -->
+                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                           Η σωστή δίαιτα δεν επιβάλλει κατ΄ ουδένα τρόπο την ασιτία. Το αντίθετο. Το ισορροπημένο διαιτολόγιο με την πρόσληψη όλων των απαραίτητων για τον οργανισμό στοιχείων είναι αυτό, που θα οδηγήσει στην απώλεια βάρους. Το Διατροφολογικό & Διαιτολογικό Κέντρο προτείνει διατροφικά προγράμματα, που ενισχύουν τον οργανισμό και του δίνουν την ενέργεια που χρειάζεται για να λειτουργήσει σωστά ενώ ταυτόχρονα επέρχεται η απώλεια βάρους. Σ΄ αυτό συντελεί η εξατομικευμένη διατροφή, προσαρμοσμένη στις ανάγκες καθενός. Να θυμάστε, πως η περιορισμένη λήψη τροφής μπορεί να έχει σοβαρές επιπτώσεις για τον οργανισμό μας, χωρίς μάλιστα να υπάρξει απώλεια κιλών. Κι αυτό, γιατί ο μεταβολισμός μας μειώνεται, άρα δεν κάνει τις σωστές καύσεις και έτσι δεν χάνουμε βάρος. Επιπλέον καίει περισσότερες μυϊκές πρωτεΐνες άρα δημιουργούνται προβλήματα στο μυϊκό μας σύστημα και τέλος δεν καίει το λίπος, που είναι το ζητούμενο, γιατί ο οργανισμός μας το προστατεύει! Η αρχή μας είναι: Τρώμε και αδυνατίζουμε!
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Accordion card -->
+                  <div class="card">
+                     <!-- Card header -->
+                     <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                           Τί πρέπει να ξέρετε πριν απευθυνθείτε σε διατροφολόγο?
+                           </button>
+                        </h5>
+                     </div>
+                     <!-- Card body -->
+                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                           Τις περισσότερες φορές είναι δύσκολο να πάρουμε την απόφαση, γιατί πιστεύουμε ότι γνωρίζουμε τα λάθη της διατροφής μας και άρα τον τρόπο να τα αντιμετωπίσουμε. Στην προσπάθεια τους μάλιστα να χάσουν κιλά, οι περισσότεροι ακολουθούν ακραίες δίαιτες, τρώγοντας πολύ λιγότερο από το επιτρεπτό. Έτσι επέρχεται σωματική και ψυχολογική κόπωση ενώ τα αποτελέσματα δεν είναι τα αναμενόμενα. Εδώ θα επέμβει ο διατροφολόγος, που θα σας βοηθήσει να αποκτήσετε τις σωστές διατροφικές συνήθειες, οι οποίες θα οδηγήσουν στο επιθυμητό αποτέλεσμα χωρίς κόπο και χωρίς για να διαταραχθεί η ισορροπία του οργανισμού σας.
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Accordion card -->
+                  <div class="card">
+                     <!-- Card header -->
+                     <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                           <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                           Πώς μπορώ να διατηρήσω το νέο μου βάρος
+                           </button>
+                        </h5>
+                     </div>
+                     <!-- Card body -->
+                     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                           Η απάντηση είναι μία: Συντήρηση. Γιατί είναι ευκολότερο να χάσετε κιλά, παρά να τα διατηρήσετε. Αυτό οφείλεται σε πολλούς παράγοντες, διατροφικούς και ψυχολογικούς. Μία δίαιτα, που κούρασε τον οργανισμό σας και δοκίμασε τις αντοχές του, εύκολα καταρρέει μετά την εκπλήρωση του όποιου στόχου. Αν μάλιστα την αισθανόσασταν ως τιμωρία, τότε ψυχολογικά και ως …επιβράβευση της επιτυχίας σας μπορεί γρήγορα να επιστρέψετε στις παλιές σας διατροφικές συνήθειες… Στο Κέντρο μας η συντήρηση αποτελεί αναπόσπαστο τμήμα της σωστής διατροφικής προσέγγισης. Σκοπός μας είναι να σας μάθουμε να τρέφεστε υγιεινά και γευστικά. Ακολουθώντας το πρόγραμμα συντήρησης, που καταρτίζεται ειδικά για εσάς ο στόχος αυτός είναι απολύτως εφικτός.
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Footer -->
+         <footer class="container-fluid bg-4 text-center">
+            <!--container-fluid for a full width container, spanning the entire width of the viewport-->
+            <br>
+            <h7 class="mt-5">Copyright 2020 Διατροφολογικό & Διαιτολογικό Κέντρo | All Rights Reserved | </h7>
+            <!--mt= margin top-->
+            <div>
+               <a type="button" class="btn btn-success mb-3" href="σελδιαχειρισης.html">Σελίδα διαχείρισης</a><!--mb= margin bottom-->
+               <!--go to the page σελδιαχειρισης.html -->
+            </div>
+            <br>
+         </footer>
+   </body>
+</html>

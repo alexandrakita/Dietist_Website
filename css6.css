@@ -1,0 +1,60 @@
+
+    #logo{
+      width: 150px
+      }
+      
+      p {font-size: 16px;}
+      .margin {margin-bottom: 45px;}
+    
+     
+       
+      a:hover {       
+    color: whitesmoke;
+  } 
+      li a {
+      color: black;
+  }
+  #team {
+    background-image: linear-gradient(180deg, green, #fff);
+  }
+  .modal-dialog {
+    max-width: 750px !important;
+  
+  }
+
+  @media (min-width: 750px){#contact-form{
+      margin: 0 45%;
+    }}
+    
+    @media (max-width: 749px){#contact-form{
+      margin: 0 30%;
+    }}
+  
+    #height {
+      background-color: green;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: medium;
+      color:black;
+      letter-spacing: 5px;
+      height: 10%;
+  }
+
+  .fusion-social-network-icon{
+      width: 150px;
+  }
+
+ 
+  .modal-body{
+    background-image: linear-gradient(180deg, #fff, green);
+}
+#btnMessage{
+    background-color: #4CAF50; 
+}
+
+ footer{
+    background-image: linear-gradient(180deg, green, #fff);
+ }
